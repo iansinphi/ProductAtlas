@@ -21,3 +21,5 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 }
+
+//Test: GitHub test. To be deleted. Isaiah
