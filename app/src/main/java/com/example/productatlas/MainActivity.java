@@ -6,6 +6,8 @@ import android.view.View;
 import android.util.Log;
 import android.content.Intent;
 
+// IPHILLIPS commit
+
 public class MainActivity extends AppCompatActivity {
     private static final String LOG_TAG =
                                     MainActivity.class.getSimpleName();
@@ -14,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
+    //creates an instance of the layout view MainActivity
 
     public void launchInventory(View view) {
         Log.d(LOG_TAG, "Button clicked");
@@ -21,3 +24,15 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 }
+
+// intent signals when to start activity, Inventory. This is initiated by a Button press.
+
+
+
+
+
+
+
+
+
+
