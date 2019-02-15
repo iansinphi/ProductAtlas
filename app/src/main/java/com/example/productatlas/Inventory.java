@@ -3,6 +3,8 @@ package com.example.productatlas;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+// IPHILLIPS commit
+
 public class Inventory extends AppCompatActivity {
 
     @Override
@@ -11,3 +13,5 @@ public class Inventory extends AppCompatActivity {
         setContentView(R.layout.activity_inventory);
     }
 }
+
+//creates the content view Inventory.
