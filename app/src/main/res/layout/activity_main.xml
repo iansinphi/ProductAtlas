@@ -27,13 +27,4 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/imageView" />
 
-    <Button
-        android:id="@+id/button_main"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="launchInventory"
-        android:text="@string/button_main"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/toolbar" />
-
 </android.support.constraint.ConstraintLayout>
