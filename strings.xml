@@ -1,0 +1,16 @@
+<!--These are all the strings we need for the whole project.  We can change this file for each customer.-->
+<resources>
+    <string name="app_name">projectAtlas</string>
+    <string name="button_main_inventory">Inventory</string>
+    <string name="button_main_tickets">Submit Ticket</string>
+    <string name="ticket_title">Ticket Submission</string>
+    <string name="ticket_check_1">Customer Assistance</string>
+    <string name="ticket_check_2">Spill/Hazard</string>
+    <string name="ticket_check_3">General Store Damage</string>
+    <string name="ticket_check_4">Equipment Nonfunctionality</string>
+    <string name="activity2_name">Inventory</string>
+    <string name="inventory_text">Elliot\'s Produce Inventory\n\nFruit\n\t\tAvocados\n\t\tGrapes\n\t\tOranges\n\t\tPears\n\t\tVegetables\n\t\tCucumbers\n\t\tLettuce</string>
+    <string name="button_ticket_submit">Submit</string>
+    <string name="button_back">Back</string>
+    <string name="input_text_hint_ticket_submit_screen">Is there anything else we should know concerning this?</string>
+</resources>
