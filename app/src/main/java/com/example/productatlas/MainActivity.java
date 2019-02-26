@@ -6,6 +6,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.content.Intent;
 import android.view.Menu;
+import android.database.sqlite.SQLiteDatabase;
 
 // IPHILLIPS commit
 
@@ -23,6 +24,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+    //RYAN - initiates the database creation
+        DBHandler dbHandler = new DBHandler(this);
+        dbHandler.getWritableDatabase();
     }
     //creates an instance of the layout view MainActivity
 
