@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">projectAtlas</string>
+    <string name="button_main">Inventory</string>
+    <string name="activity2_name">Inventory</string>
+
+    <string name="inventory_text">Elliot\'s Produce Inventory\n\nFruit\n\t\tAvocados\n\t\tGrapes\n\t\tOranges\n\t\tPears\n\t\tVegetables\n\t\tCucumbers\n\t\tLettuce</string>
+
+    <string-array name="storeNames">
+        <item>Elliot\'s Grocery</item>
+        <item>Real Fake Doors </item>
+        <item>Ants in my Eyes Johnson Electronics</item>
+    </string-array>
+
+</resources>
