@@ -11,8 +11,8 @@ import android.database.sqlite.SQLiteDatabase;
 // IPHILLIPS commit
 
 public class MainActivity extends AppCompatActivity {
-    private static final String LOG_TAG =
-                                    MainActivity.class.getSimpleName();
+    private static final String LOG_TAG = MainActivity.class.getSimpleName();
+
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main_menu,menu);
