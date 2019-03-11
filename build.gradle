@@ -7,7 +7,10 @@ buildscript {
         
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.3.1'
+          basic_search_box_with_getter
+          classpath 'com.android.tools.build:gradle:3.3.1'
+          classpath 'com.android.tools.build:gradle:3.3.2'
+          master
         
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
