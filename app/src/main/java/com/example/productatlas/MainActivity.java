@@ -8,7 +8,7 @@ import android.content.Intent;
 import android.view.Menu;
 import android.database.sqlite.SQLiteDatabase;
 
-// IPHILLIPS commit
+// IPHILLIPS commit some change
 
 public class MainActivity extends AppCompatActivity {
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
