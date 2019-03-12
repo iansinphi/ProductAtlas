@@ -1,7 +1,27 @@
 <resources>
+
+    //general strings
     <string name="app_name">Product Atlas</string>
-    <string name="button_main">Inventory</string>
-    <string name="activity2_name">Inventory</string>
-    <string name="inventory_text">Elliot\'s Produce Inventory\n\nFruit\n\t\tAvocados\n\t\tGrapes\n\t\tOranges\n\t\tPears\nVegetables\n\t\tCucumbers\n\t\tLettuce</string>
     <string name="version_text">Version 0.1.21819</string>
+
+    //menu
+    <string name="button_main_tickets">Submit Ticket</string>
+    <string name="button_main_inventory">Inventory</string>
+    <string name="button_main_search">Search</string>
+
+    //inventory strings
+    <string name="inventory_title">Inventory</string>
+    <string name="inventory_text">Elliot\'s Produce Inventory\n\nFruit\n\t\tAvocados\n\t\tGrapes\n\t\tOranges\n\t\tPears\nVegetables\n\t\tCucumbers\n\t\tLettuce</string>
+
+    //submit ticket screen strings
+    <string name="submit_ticket_title">Submit Ticket</string>
+    <string name="ticket_title">Ticket Submission</string>
+    <string name="ticket_check_1">Customer Assistance</string>
+    <string name="ticket_check_2">Spill/Hazard</string>
+    <string name="ticket_check_3">General Store Damage</string>
+    <string name="ticket_check_4">Equipment Nonfunctionality</string>
+    <string name="button_ticket_submit">Submit</string>
+    <string name="button_back">Back</string>
+    <string name="input_text_hint_ticket_submit_screen">Is there anything else we should know concerning this?</string>
+
 </resources>
