@@ -4,4 +4,7 @@
     <string name="activity2_name">Inventory</string>
     <string name="inventory_text">Elliot\'s Produce Inventory\n\nFruit\n\t\tAvocados\n\t\tGrapes\n\t\tOranges\n\t\tPears\nVegetables\n\t\tCucumbers\n\t\tLettuce</string>
     <string name="version_text">Version 0.1.21819</string>
+
+    <!--//searching-->
+    <string name="search_label">Search</string>
 </resources>

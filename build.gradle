@@ -7,11 +7,11 @@ buildscript {
         
     }
     dependencies {
-          basic_search_box_with_getter
+          //basic_search_box_with_getter
           classpath 'com.android.tools.build:gradle:3.3.1'
           classpath 'com.android.tools.build:gradle:3.3.2'
-          master
-        
+          //master
+
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -21,7 +21,15 @@ allprojects {
     repositories {
         google()
         jcenter()
-        
+
+        //These were added after a merge with the basic_search_bar_with_getter branch.
+        //I don't know why these were added / their purpose, but after they were added, I received
+        //a Sync Failed--unable to find these dependencies--error. So after I commented them out and
+        //manually added Jesse's Startup Screen and tried to add Jordan's search bar, it worked.
+        //So, I am keeping these here for the record until someone can confirm their usage. Isaiah
+
+        //basic_search_box_with_getter
+        //master
     }
 }
 

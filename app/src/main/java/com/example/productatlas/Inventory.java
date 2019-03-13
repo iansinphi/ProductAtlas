@@ -2,8 +2,7 @@ package com.example.productatlas;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-
-// IPHILLIPS commit
+import android.widget.TextView;
 
 public class Inventory extends AppCompatActivity {
 
@@ -11,6 +10,9 @@ public class Inventory extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inventory);
+
+        TextView textView = (TextView) findViewById(R.id.textView);
+        textView.setText("Test");
     }
 }
 
