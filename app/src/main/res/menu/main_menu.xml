@@ -15,5 +15,6 @@
         android:actionLayout="@drawable/ic_search_black_24dp"
         android:icon="@drawable/ic_search_black_24dp"
         android:title="Search"
-        app:actionViewClass="android.widget.SearchView" />
+        app:actionViewClass="android.widget.SearchView"
+        android:onClick="launchSearch"/>
 </menu>
