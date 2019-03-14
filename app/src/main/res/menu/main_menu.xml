@@ -1,20 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    // IPHILLIPS Commit: moved inventory to action bar with same intent
     <item
-        android:id="@+id/action_bar_container"
-        android:icon="@drawable/ic_more_vert_black_24dp"
-        android:title="Inventory"
-        android:onClick="launchInventory"/>
-
-    // IPHILLIPS Commit: created search button. Haven't implemented search feature yet.
-    <item
-        android:id="@+id/app_bar_search"
-        android:actionLayout="@drawable/ic_search_black_24dp"
-        android:icon="@drawable/ic_search_black_24dp"
+        android:id="@+id/searchMenu"
+        android:orderInCategory="100"
+        app:showAsAction="always"
         android:title="Search"
-        app:actionViewClass="android.widget.SearchView"
-        android:onClick="launchSearch"/>
+        android:icon="@drawable/ic_action_action_search"/>
 </menu>
