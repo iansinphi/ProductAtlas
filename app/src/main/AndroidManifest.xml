@@ -10,7 +10,7 @@ package="com.example.productatlas">
     android:supportsRtl="true"
     android:theme="@style/AppTheme">
     <activity android:name=".Inventory"
-        android:label = "@string/activity2_name"
+        android:label = "Select Item"
         android:parentActivityName=".MainActivity">
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
@@ -34,7 +34,16 @@ package="com.example.productatlas">
     </activity>
     <activity
         android:name="com.example.productatlas.startUpScreen"
-        android:label="@string/app_name" />
+        android:label="Select Inventory" />
+    <activity
+        android:name=".quickSearch"
+        android:label="Search by Category">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+    </activity>
 </application>
 
 </manifest>
