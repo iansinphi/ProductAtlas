@@ -20,16 +20,13 @@ package="com.example.productatlas">
     <activity android:name=".MainActivity">
         <intent-filter>
             <action android:name="android.intent.action.MAIN"/>
-
-            <category android:name="android.intent.category.LAUNCHER"/>
         </intent-filter>
     </activity>
 
     <activity android:name=".splashScreen">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
+            <category android:name="android.intent.category.LAUNCHER"/>
         </intent-filter>
     </activity>
     <activity
@@ -40,8 +37,6 @@ package="com.example.productatlas">
         android:label="Search by Category">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
     </activity>
 </application>
