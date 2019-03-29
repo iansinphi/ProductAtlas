@@ -9,8 +9,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
+//import com.google.gson.Gson;
 
 public class MainActivity extends AppCompatActivity {
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
@@ -28,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //RYAN - initiates the database creation
-        DBHandler dbHandler = new DBHandler(this);
+        final DBHandler dbHandler = new DBHandler(this);
         dbHandler.getWritableDatabase();
 
         EditText editText = (EditText) findViewById(R.id.textInputEditText);
@@ -47,6 +49,28 @@ public class MainActivity extends AppCompatActivity {
                     Log.d(LOG_TAG, search.getText().toString());
 
                     if (stringSearch != null && !stringSearch.isEmpty()) {
+//                        launchInventory(stringSearch, dbHandler);
+                        launchInventory(stringSearch);
+                    }
+
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        //On keyboard search click; here, this on-screen key press determines if the string entered
+        //is not empty and if so calls launchInventory.
+        editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    TextView search = (TextView) findViewById(R.id.textInputEditText);
+                    String stringSearch = search.getText().toString();
+                    Log.d(LOG_TAG, search.getText().toString());
+
+                    if (stringSearch != null && !stringSearch.isEmpty()) {
+//                        launchInventory(stringSearch, dbHandler);
                         launchInventory(stringSearch);
                     }
 
@@ -69,12 +93,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //Item query is passed to Inventory activity for querying by item name or other attributes.
+//    private void launchInventory(String itemQuery, DBHandler dbHandler) {
     private void launchInventory(String itemQuery) {
         Intent intent = new Intent(this, Inventory.class);
         Bundle b = new Bundle();
         b.putString("queryType", "itemQuery");
         b.putString("itemQuery", itemQuery);
         intent.putExtras(b);
+//        intent.putExtra("DBHandler", new Gson().toJson(dbHandler));
         startActivity(intent);
     }
 }

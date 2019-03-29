@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
+//import com.google.gson.Gson;
+
 public class Inventory extends AppCompatActivity {
 
     //Content view Inventory, at least, created here.
@@ -19,6 +21,8 @@ public class Inventory extends AppCompatActivity {
             String queryType = b.getString("queryType");
             String categoryQuery = null;
             String itemQuery = null;
+
+//            DBHandler dbHandler = new Gson().fromJson("DBHandler", DBHandler.class);
 
             //If user selected item in the Search by Category Screen. This means the query is a
             //preselected category, which should automatically contain at least one item in the
