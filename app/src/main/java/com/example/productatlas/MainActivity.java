@@ -1,7 +1,12 @@
 package com.example.productatlas;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -19,6 +24,19 @@ public class MainActivity extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main_menu, menu);
         return true;
+    }
+
+    public static class launchAtlasBox extends DialogFragment {
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setMessage(R.string.dialog_item_atlas)
+                    .setNegativeButton(R.string.OK, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            //exits the Atlas Box
+                        }
+                    });
+            return builder.create();
+        }
     }
 
     @Override
@@ -47,7 +65,9 @@ public class MainActivity extends AppCompatActivity {
                     Log.d(LOG_TAG, search.getText().toString());
 
                     if (stringSearch != null && !stringSearch.isEmpty()) {
-                        launchInventory(stringSearch);
+                        DialogFragment newFragment = new launchAtlasBox();
+                        newFragment.show(getSupportFragmentManager(),"Bin A2");
+
                     }
 
                     return true;
@@ -77,4 +97,5 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtras(b);
         startActivity(intent);
     }
+
 }

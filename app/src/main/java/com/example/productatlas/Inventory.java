@@ -3,7 +3,16 @@ package com.example.productatlas;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.TextView;
+import android.content.Intent;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.graphics.Color;
+
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 public class Inventory extends AppCompatActivity {
 
@@ -14,6 +23,7 @@ public class Inventory extends AppCompatActivity {
         setContentView(R.layout.activity_inventory);
 
         Bundle b = getIntent().getExtras();
+
 
         if(b != null) {
             String queryType = b.getString("queryType");
