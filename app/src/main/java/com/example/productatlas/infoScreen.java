@@ -18,6 +18,9 @@ public class infoScreen extends AppCompatActivity {
         String quantity;
         String type;
 
+        //Ryan - Start of DB operations.
+        DBHandler dbHandler = new DBHandler(this);
+
         Bundle extras = getIntent().getExtras();
 
         String[] itemInfo = extras.getStringArray("itemInfo");
