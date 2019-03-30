@@ -1,10 +1,15 @@
 package com.example.productatlas;
 
 import android.content.Context;
+import android.content.res.AssetManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.content.ContentValues;
 import android.database.Cursor;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -26,7 +31,17 @@ public class DBHandler extends SQLiteOpenHelper {
 
     public DBHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        //IMPLEMENT CSV in ASSETS FOLDER---------------------------------------
+        AssetManager assetManager = context.getAssets();
+        InputStream is;
+        try {
+            is = assetManager.open("fileholder.csv");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+    //-------------------------------------------------------------------------
+
     //This is overriding a built in onCreate function..
     //it's designed to create the DB table if none exists
     @Override
@@ -106,7 +121,10 @@ public class DBHandler extends SQLiteOpenHelper {
     //END FINDING AN ITEM
 
     //Returning all items from Database
-    public List<Store> getAllShops() {
+    //Was List<Store>
+    public String[] getAllShops() {
+        int i = 0;
+        String[] queryItem = new String[6];
         List<Store> itemList = new ArrayList<Store>();
         // Select All Query
         String selectQuery = "SELECT * FROM "+TABLE_ITEM;
@@ -122,11 +140,14 @@ public class DBHandler extends SQLiteOpenHelper {
                 item.setStoreDesc(cursor.getString(3));
                 item.setPrice(Double.parseDouble(cursor.getString(4)));
                 item.setQuantity(Integer.parseInt(cursor.getString(5)));
+                item.setClassification(cursor.getString(6));
                 // Adding contact to list
                 itemList.add(item);
+                queryItem[i] = item.getName() + " " + item.getStoreDesc() + " " + item.getQuantity() + " " + item.getShelf() + " " + item.getClassification();
+                i++;
             } while (cursor.moveToNext());
         }
-        return itemList;
+        return queryItem;
     }
     //END FINDING ALL DATABASE ITEMS
 
@@ -152,4 +173,5 @@ public class DBHandler extends SQLiteOpenHelper {
         return result;
     }
     //END DELETION OF ITEM
+
 }

@@ -19,9 +19,7 @@ public class quickSearch extends AppCompatActivity {
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
 
     private static String[] CATEGORIES = new String[] {
-            "Coffee", "Beverages", "Snacks", "Breakfast & Cereal", "Meals", "Condiments", "Pasta",
-            "Candy & Gum", "Soups", "Canned Goods", "Emergency Food", "Baking Center",
-            "International Food", "Gift Baskets"
+            "fruit","vegetable"
     };
 
     private MaterialSearchView mMaterialSearchView;
@@ -115,6 +113,7 @@ public class quickSearch extends AppCompatActivity {
     //If one of the categories matches or contains a substring of query, then go to
     //Inventory Screen.
     private void launchInventory(String categoryQuery) {
+        // The multiple query will go here to complete the
         Intent intent = new Intent(quickSearch.this, Inventory.class);
         Bundle b = new Bundle();
         b.putString("queryType", "categoryQuery");

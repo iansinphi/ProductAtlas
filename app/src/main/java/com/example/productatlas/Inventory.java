@@ -3,7 +3,12 @@ package com.example.productatlas;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
+import android.widget.ListView;
 
 //import com.google.gson.Gson;
 
@@ -16,6 +21,10 @@ public class Inventory extends AppCompatActivity {
         setContentView(R.layout.activity_inventory);
 
         Bundle b = getIntent().getExtras();
+
+        //For DB query
+        DBHandler dbHandler = new DBHandler(this);
+        Store item = new Store();
 
         if(b != null) {
             String queryType = b.getString("queryType");
@@ -30,8 +39,26 @@ public class Inventory extends AppCompatActivity {
             if (queryType.equals("categoryQuery")) {
                 categoryQuery = b.getString("categoryQuery");
 
-                TextView textView = (TextView) findViewById(R.id.textView);
-                textView.setText(categoryQuery);
+                //Query gets ALL items from database
+                String[] itemList = dbHandler.getAllShops();
+                List<String> specList = new ArrayList<String>();
+                for(int i = 0; i < itemList.length; i++){
+                    if(itemList[i].indexOf(categoryQuery) > 0){
+                        specList.add(itemList[i]);
+                    }
+                }
+
+                //TextView textView = (TextView) findViewById(R.id.textView);
+                ListView listView = (ListView) findViewById(R.id.listView);
+                final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, specList);
+                listView.setAdapter(arrayAdapter);
+
+                //if(item == null) {
+                  //  String notFound = "Item not found!";
+                    //textView.setText(notFound);
+                //}
+                //else
+                //    textView.setText(item.getName());
 
                 //Query items of this category here.
             }
@@ -44,8 +71,16 @@ public class Inventory extends AppCompatActivity {
             else if (queryType.equals("itemQuery")) {
                 itemQuery = b.getString("itemQuery");
 
+                item = dbHandler.findProduct(itemQuery);
+
                 TextView textView = (TextView) findViewById(R.id.textView);
-                textView.setText(itemQuery);
+                if(item == null) {
+                    String notFound = "Item not found!";
+                    textView.setText(notFound);
+                }
+                else {
+                    textView.setText(item.getName() + " " + item.getStoreDesc() + " " + item.getQuantity() + " " + item.getShelf());
+                }
 
                 //Query the names or other attributes for this query here.
             }

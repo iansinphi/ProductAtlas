@@ -14,11 +14,16 @@
         android:layout_marginLeft="56dp"
         android:layout_marginTop="112dp"
         android:editable="false"
-        android:text="@string/inventory_text"
         android:textSize="24sp"
         android:typeface="sans"
         app:fontFamily="sans-serif-black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:editable="true" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar"
+        android:id="@+id/listView"/>
 </android.support.constraint.ConstraintLayout>
