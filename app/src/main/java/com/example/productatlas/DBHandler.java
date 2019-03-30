@@ -1,12 +1,16 @@
 package com.example.productatlas;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.content.res.AssetManager;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.content.ContentValues;
-import android.database.Cursor;
-import java.util.List;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 public class DBHandler extends SQLiteOpenHelper {
     //This is which version of the database we are using.
@@ -26,7 +30,17 @@ public class DBHandler extends SQLiteOpenHelper {
 
     public DBHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        //IMPLEMENT CSV in ASSETS FOLDER---------------------------------------
+        AssetManager assetManager = context.getAssets();
+        InputStream is;
+        try {
+            is = assetManager.open("fileholder.csv");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+    //-------------------------------------------------------------------------
+
     //This is overriding a built in onCreate function..
     //it's designed to create the DB table if none exists
     @Override
@@ -38,12 +52,12 @@ public class DBHandler extends SQLiteOpenHelper {
         db.execSQL(CREATE_CONTACTS_TABLE);
         //This area will eventually be used to pull a database from a client CSV file.. work in progress.
         //Fine.. I'll freaking hardcode it for now..
-        db.execSQL("INSERT INTO item (name, shelf, item_desc, price, quantity, class) VALUES ('Avocado', '3', 'Awesome Avocados', '12', '8', 'fruit');");
-        db.execSQL("INSERT INTO item (name, shelf, item_desc, price, quantity, class) VALUES ('Grapes', '3', 'Giant Grapes', '10', '11', 'fruit');");
-        db.execSQL("INSERT INTO item (name, shelf, item_desc, price, quantity, class) VALUES ('Oranges', '1', 'Outrageous Oranges', '2', '8', 'fruit');");
-        db.execSQL("INSERT INTO item (name, shelf, item_desc, price, quantity, class) VALUES ('Apples', '5', 'Amazing Apples', '5', '4', 'fruit');");
-        db.execSQL("INSERT INTO item (name, shelf, item_desc, price, quantity, class) VALUES ('Lettuce', '4', 'Luxorious Lettuce', '1', '7', 'vegetable');");
-        db.execSQL("INSERT INTO item (name, shelf, item_desc, price, quantity, class) VALUES ('Broccoli', '10', 'Beautiful Broccoli', '9', '4', 'vegetable');");
+        db.execSQL("INSERT INTO item (name, shelf, item_desc, price, quantity, class) VALUES ('Avocado', '5', 'Awesome Avocados', '12', '8', 'Fruit');");
+        db.execSQL("INSERT INTO item (name, shelf, item_desc, price, quantity, class) VALUES ('Grapes', '5', 'Giant Grapes', '10', '11', 'Fruit');");
+        db.execSQL("INSERT INTO item (name, shelf, item_desc, price, quantity, class) VALUES ('Oranges', '5', 'Outrageous Oranges', '2', '8', 'Fruit');");
+        db.execSQL("INSERT INTO item (name, shelf, item_desc, price, quantity, class) VALUES ('Apples', '5', 'Amazing Apples', '5', '4', 'Fruit');");
+        db.execSQL("INSERT INTO item (name, shelf, item_desc, price, quantity, class) VALUES ('Lettuce', '6', 'Luxorious Lettuce', '1', '7', 'Vegetable');");
+        db.execSQL("INSERT INTO item (name, shelf, item_desc, price, quantity, class) VALUES ('Broccoli', '6', 'Beautiful Broccoli', '9', '4', 'Vegetable');");
     }
     //This overrides the onUpgrade built in function
     //It's supposed to build a new database if one already exists
@@ -56,6 +70,113 @@ public class DBHandler extends SQLiteOpenHelper {
         onCreate(db);
     }
     //THIS IS THE END OF THE INITIALIZATION PART OF THE DATABASE
+
+
+
+    //Isaiah - Adding these three functions, getItemsFromItemNameSearch, getItemsFromCategorySearch,
+    // and getItemInformation for the project to query by category and by item name and then to
+    // retrieve all of one item's information:
+
+    //Returning all items containing substring searched by user.
+    public List<String> getItemsFromItemNameSearch(String itemQuery) {
+        List<Store> itemList = new ArrayList<Store>();
+        List<String> queryResult = new ArrayList<String>();
+
+        // Select All Query
+        String selectQuery = "SELECT * FROM "+TABLE_ITEM;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                Store item = new Store();
+                item.setId(Integer.parseInt(cursor.getString(0)));
+                item.setName(cursor.getString(1));
+                item.setShelf(Integer.parseInt(cursor.getString(2)));
+                item.setStoreDesc(cursor.getString(3));
+                item.setPrice(Double.parseDouble(cursor.getString(4)));
+                item.setQuantity(Integer.parseInt(cursor.getString(5)));
+                item.setClassification(cursor.getString(6));
+                // Adding contact to list
+                itemList.add(item);
+
+                if (item.getName().toLowerCase().contains(itemQuery.toLowerCase())) {
+                    queryResult.add(item.getName());
+                }
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        cursor = null;
+
+        return queryResult;
+    }
+
+    //Return all items from category search.
+    public List<String> getItemsFromCategorySearch(String categoryQuery) {
+        List<Store> itemList = new ArrayList<Store>();
+        List<String> queryResult = new ArrayList<String>();
+
+        // Select All Query
+        String selectQuery = "SELECT * FROM "+TABLE_ITEM;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                Store item = new Store();
+                item.setId(Integer.parseInt(cursor.getString(0)));
+                item.setName(cursor.getString(1));
+                item.setShelf(Integer.parseInt(cursor.getString(2)));
+                item.setStoreDesc(cursor.getString(3));
+                item.setPrice(Double.parseDouble(cursor.getString(4)));
+                item.setQuantity(Integer.parseInt(cursor.getString(5)));
+                item.setClassification(cursor.getString(6));
+                // Adding contact to list
+                itemList.add(item);
+
+                if (categoryQuery.equals(item.getClassification())) {
+                    queryResult.add(item.getName());
+                }
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        cursor = null;
+
+        return queryResult;
+    }
+
+    //Return all information for one item.
+    public String[] getItemInformation() {
+        int i = 0;
+        String[] queryItem = new String[6];
+        List<Store> itemList = new ArrayList<Store>();
+        // Select All Query
+        String selectQuery = "SELECT * FROM "+TABLE_ITEM;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                Store item = new Store();
+                item.setId(Integer.parseInt(cursor.getString(0)));
+                item.setName(cursor.getString(1));
+                item.setShelf(Integer.parseInt(cursor.getString(2)));
+                item.setStoreDesc(cursor.getString(3));
+                item.setPrice(Double.parseDouble(cursor.getString(4)));
+                item.setQuantity(Integer.parseInt(cursor.getString(5)));
+                item.setClassification(cursor.getString(6));
+                // Adding contact to list
+                itemList.add(item);
+                queryItem[i] = item.getName() + " " + item.getStoreDesc() + " " + item.getQuantity() + " " + item.getShelf() + " " + item.getClassification();
+                i++;
+            } while (cursor.moveToNext());
+        }
+        return queryItem;
+    }
+
+
 
 //RYAN - EVERYTHING BELOW HERE IS NOT USED WITH PRODUCT ATLAS****************
 //I'M LEAVING THE CODE HERE UNTIL WE KNOW WE WON'T NEED IT*******************
@@ -106,7 +227,10 @@ public class DBHandler extends SQLiteOpenHelper {
     //END FINDING AN ITEM
 
     //Returning all items from Database
-    public List<Store> getAllShops() {
+    //Was List<Store>
+    public String[] getAllShops() {
+        int i = 0;
+        String[] queryItem = new String[6];
         List<Store> itemList = new ArrayList<Store>();
         // Select All Query
         String selectQuery = "SELECT * FROM "+TABLE_ITEM;
@@ -122,11 +246,14 @@ public class DBHandler extends SQLiteOpenHelper {
                 item.setStoreDesc(cursor.getString(3));
                 item.setPrice(Double.parseDouble(cursor.getString(4)));
                 item.setQuantity(Integer.parseInt(cursor.getString(5)));
+                item.setClassification(cursor.getString(6));
                 // Adding contact to list
                 itemList.add(item);
+                queryItem[i] = item.getName() + " " + item.getStoreDesc() + " " + item.getQuantity() + " " + item.getShelf() + " " + item.getClassification();
+                i++;
             } while (cursor.moveToNext());
         }
-        return itemList;
+        return queryItem;
     }
     //END FINDING ALL DATABASE ITEMS
 
@@ -152,4 +279,5 @@ public class DBHandler extends SQLiteOpenHelper {
         return result;
     }
     //END DELETION OF ITEM
+
 }

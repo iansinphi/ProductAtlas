@@ -1,24 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Inventory">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="296dp"
-        android:layout_height="351dp"
-        android:layout_marginStart="56dp"
-        android:layout_marginLeft="56dp"
-        android:layout_marginTop="112dp"
-        android:editable="false"
-        android:text="@string/inventory_text"
-        android:textSize="24sp"
-        android:typeface="sans"
-        app:fontFamily="sans-serif-black"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:editable="true" />
-</android.support.constraint.ConstraintLayout>
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar"
+        android:scrollbarSize="20dp" />
+</RelativeLayout>

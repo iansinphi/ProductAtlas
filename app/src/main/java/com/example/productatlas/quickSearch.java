@@ -19,9 +19,7 @@ public class quickSearch extends AppCompatActivity {
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
 
     private static String[] CATEGORIES = new String[] {
-            "Coffee", "Beverages", "Snacks", "Breakfast & Cereal", "Meals", "Condiments", "Pasta",
-            "Candy & Gum", "Soups", "Canned Goods", "Emergency Food", "Baking Center",
-            "International Food", "Gift Baskets"
+            "Fruit", "Vegetable"
     };
 
     private MaterialSearchView mMaterialSearchView;
