@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
         Bundle b = getIntent().getExtras();
 
+        //If something was past in from...
         if (b != null) {
             int id = b.getInt("id");
             String name = b.getString("name");
