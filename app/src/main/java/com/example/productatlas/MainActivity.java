@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 //import com.google.gson.Gson;
 
@@ -35,6 +36,14 @@ public class MainActivity extends AppCompatActivity {
 
         Bundle b = getIntent().getExtras();
 
+        //Jordan D. -- get pins by id so we can conditionally set their visibilities
+        ImageView PinA1 = (ImageView) findViewById(R.id.pinA1);
+        ImageView PinA2 = (ImageView) findViewById(R.id.pinA2);
+        ImageView PinB1 = (ImageView) findViewById(R.id.pinB1);
+        ImageView PinB2 = (ImageView) findViewById(R.id.pinB2);
+        ImageView PinC = (ImageView) findViewById(R.id.pinC);
+        ImageView PinD = (ImageView) findViewById(R.id.pinD);
+
         if (b != null) {
             int id = b.getInt("id");
             String name = b.getString("name");
@@ -44,7 +53,16 @@ public class MainActivity extends AppCompatActivity {
             String category = b.getString("category");
 
             //Activate the blip corresponding to this item's shelf number here and hide the rest.
+            //Jordan D. -- so glad java 7 introduced strings in switches.
+            switch (category){
+                case "Vegetable":
+                    PinB2.setVisibility(PinB2.VISIBLE);
+                    break;
+                case "Fruit":
+                    PinB1.setVisibility(PinB1.VISIBLE);
+                    break;
 
+            }
             //AlertDialog box to test that string is passed back to Main from Inventory.
             new AlertDialog.Builder(this)
                     .setTitle("Item Information to Be Viewed in Information Screen")
