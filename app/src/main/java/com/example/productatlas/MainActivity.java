@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
             Double price = b.getDouble("price");
             int quantity = b.getInt("quantity");
             String category = b.getString("category");
-
+ 
             //Activate the blip corresponding to this item's shelf number here and hide the rest.
             //Jordan D. -- so glad java 7 introduced strings in switches.
             switch (category){
