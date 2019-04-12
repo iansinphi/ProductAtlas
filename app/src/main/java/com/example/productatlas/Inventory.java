@@ -50,6 +50,8 @@ public class Inventory extends AppCompatActivity {
                     String itemClicked = arrayAdapter1.getItem(position);
 
                     launchMain(itemClicked);
+
+                    finish();
                 }
             });
         }
@@ -75,6 +77,8 @@ public class Inventory extends AppCompatActivity {
                         String itemClicked = arrayAdapter2.getItem(position);
 
                         launchMain(itemClicked);
+
+                        finish();
                     }
                 });
             } else {
@@ -89,6 +93,8 @@ public class Inventory extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int which) {
                                 //Launch Main with no item clicked.
                                 launchMain();
+
+                                finish();
                             }
                         })
                         .setIcon(android.R.drawable.ic_dialog_alert)

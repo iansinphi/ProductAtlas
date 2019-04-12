@@ -73,6 +73,8 @@ public class infoScreen extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 launchTicketScreen(itemName, shelf, description, price, quantity, category);
+
+                finish();
             }
         });
 

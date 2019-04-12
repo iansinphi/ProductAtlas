@@ -73,6 +73,8 @@ public class startUpScreen extends AppCompatActivity {
                         @Override
                         public void onClick(View v){
                             launchMap();
+
+                            finish();
                         }
                     });
                 }

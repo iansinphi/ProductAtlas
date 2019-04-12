@@ -38,7 +38,6 @@ public class ticketScreen extends AppCompatActivity {
         submitButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-
                 String custName = name.getText().toString();
                 String description = problem.getText().toString();
 
@@ -59,7 +58,6 @@ public class ticketScreen extends AppCompatActivity {
             }
         });
 
-
         returnButton = (Button) findViewById(R.id.returnInfo);
         returnButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -67,6 +65,5 @@ public class ticketScreen extends AppCompatActivity {
                 finish();
             }
         });
-
     }
 }

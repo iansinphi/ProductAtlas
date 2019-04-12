@@ -146,10 +146,13 @@ public class MainActivity extends AppCompatActivity {
 
                     if (stringSearch != null && !stringSearch.isEmpty()) {
                         launchInventory(stringSearch);
+
+                        finish();
                     }
 
                     return true;
                 }
+
                 return false;
             }
         });
@@ -166,10 +169,13 @@ public class MainActivity extends AppCompatActivity {
 
                     if (stringSearch != null && !stringSearch.isEmpty()) {
                         launchInventory(stringSearch);
+
+                        finish();
                     }
 
                     return true;
                 }
+
                 return false;
             }
         });
@@ -178,12 +184,15 @@ public class MainActivity extends AppCompatActivity {
     public void launchQuickSearch(MenuItem menuItem) {
         Intent intent = new Intent(this, quickSearch.class);
         startActivity(intent);
+
+        finish();
     }
 
     public void exitToStartup(MenuItem menuItem) {
-        Log.d(LOG_TAG, "Button clicked");
         Intent intent = new Intent(this, startUpScreen.class);
         startActivity(intent);
+
+        finish();
     }
 
     //Item query is passed to Inventory activity for querying by item name or other attributes.

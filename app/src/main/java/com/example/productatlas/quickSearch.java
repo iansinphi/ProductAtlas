@@ -95,6 +95,8 @@ public class quickSearch extends AppCompatActivity {
                 String itemClicked = arrayAdapter.getItem(position);
 
                 launchInventory(itemClicked);
+
+                finish();
             }
         });
     }
