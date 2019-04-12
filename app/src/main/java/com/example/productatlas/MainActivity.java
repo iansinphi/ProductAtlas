@@ -184,8 +184,6 @@ public class MainActivity extends AppCompatActivity {
     public void launchQuickSearch(MenuItem menuItem) {
         Intent intent = new Intent(this, quickSearch.class);
         startActivity(intent);
-
-        finish();
     }
 
     public void exitToStartup(MenuItem menuItem) {
