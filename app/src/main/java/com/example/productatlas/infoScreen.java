@@ -13,6 +13,7 @@ import android.widget.Toast;
 public class infoScreen extends AppCompatActivity {
 
     private Button ticketButton;
+    private Button returnButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,23 +104,29 @@ public class infoScreen extends AppCompatActivity {
             }
         }
 
-        //Commented the below out because I do not see the ticket screen in the java files, so I cannot add a destination for the button to launch. -Jesse
-        //ticketButton = (Button) findViewById(R.id.button);
-        //ticketButton.setOnClickListener(new View.OnClickListener(){
-          //  @Override
-         //   public void onClick(View v){
-         //       launchTicketScreen();
-          //  }
-       // });
+        ticketButton = (Button) findViewById(R.id.reportIssue);
+        ticketButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                launchTicketScreen();
+            }
+        });
+
+        returnButton = (Button) findViewById(R.id.returnMap);
+        returnButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                finish();
+            }
+        });
 
 
     }
 
-    //Used to launch the ticket screen
-    //public void launchTicketScreen() {
-    //    Intent intent = new Intent(this, ticketScreenHere.class);
-     //   startActivity(intent);
-    //}
+    public void launchTicketScreen() {
+        Intent intent = new Intent(this, ticketScreen.class);
+        startActivity(intent);
+    }
 }
 
 
