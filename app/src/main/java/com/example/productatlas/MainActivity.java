@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
         Bundle b = getIntent().getExtras();
 
+
         //Jordan D. -- get pins by id so we can conditionally set their visibilities
         ImageView PinA1 = (ImageView) findViewById(R.id.pinA1);
         ImageView PinA2 = (ImageView) findViewById(R.id.pinA2);
@@ -44,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
         ImageView PinC = (ImageView) findViewById(R.id.pinC);
         ImageView PinD = (ImageView) findViewById(R.id.pinD);
 
+
+        //If something was past in from...
         if (b != null) {
             int id = b.getInt("id");
             String name = b.getString("name");
