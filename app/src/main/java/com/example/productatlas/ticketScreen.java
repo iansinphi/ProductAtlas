@@ -20,6 +20,16 @@ public class ticketScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ticket_screen);
 
+        Bundle b = getIntent().getExtras();
+
+        //The item information to be submitted with the ticket info to the output file.
+        //They may need to be declared final.
+        String itemName = b.getString("name");
+        int shelf = b.getInt("shelf");
+        String description = b.getString("description");
+        Double price = b.getDouble("price");
+        int quantity = b.getInt("quantity");
+        String category = b.getString("category");
 
         name = (EditText) findViewById(R.id.editText2);
         problem = (EditText) findViewById(R.id.editText);

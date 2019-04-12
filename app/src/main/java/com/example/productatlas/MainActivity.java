@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
 
         Bundle b = getIntent().getExtras();
 
-
         //Jordan D. -- get pins by id so we can conditionally set their visibilities
         ImageView pinA1 = (ImageView) findViewById(R.id.pinA1);
         ImageView pinA2 = (ImageView) findViewById(R.id.pinA2);
@@ -44,16 +43,15 @@ public class MainActivity extends AppCompatActivity {
         ImageView pinC = (ImageView) findViewById(R.id.pinC);
         ImageView pinD = (ImageView) findViewById(R.id.pinD);
 
-
         //If something was past in from...
         if (b != null) {
-            String name = b.getString("name");
-            int shelf = b.getInt("shelf");
-            String description = b.getString("description");
-            Double price = b.getDouble("price");
-            int quantity = b.getInt("quantity");
-            String category = b.getString("category");
- 
+            final String name = b.getString("name");
+            final int shelf = b.getInt("shelf");
+            final String description = b.getString("description");
+            final Double price = b.getDouble("price");
+            final int quantity = b.getInt("quantity");
+            final String category = b.getString("category");
+
             //Activate the blip corresponding to this item's shelf number here and hide the rest.
             switch(shelf){
                 case 1:
@@ -91,42 +89,42 @@ public class MainActivity extends AppCompatActivity {
             pinC.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v){
-                    launchInfoScreen("Test");
+                    launchInfoScreen(name, shelf, description, price, quantity, category);
                 }
             });
 
             pinB1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v){
-                    launchInfoScreen("Test");
+                    launchInfoScreen(name, shelf, description, price, quantity, category);
                 }
             });
 
             pinB2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v){
-                    launchInfoScreen("Test");
+                    launchInfoScreen(name, shelf, description, price, quantity, category);
                 }
             });
 
             pinA1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v){
-                    launchInfoScreen("Test");
+                    launchInfoScreen(name, shelf, description, price, quantity, category);
                 }
             });
 
             pinA2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v){
-                    launchInfoScreen("Test");
+                    launchInfoScreen(name, shelf, description, price, quantity, category);
                 }
             });
 
             pinD.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v){
-                    launchInventory("app");
+                    launchInfoScreen(name, shelf, description, price, quantity, category);
                 }
             });
         }
@@ -198,11 +196,16 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void launchInfoScreen(String itemQuery) {
+    private void launchInfoScreen(String name, int shelf, String description, double price,
+                                  int quantity, String category) {
         Intent intent = new Intent(this, infoScreen.class);
         Bundle b = new Bundle();
-        b.putString("asdf", itemQuery);
-//        b.putString("itemQuery", itemQuery);
+        b.putString("name", name);
+        b.putInt("shelf", shelf);
+        b.putString("description", description);
+        b.putDouble("price", price);
+        b.putInt("quantity", quantity);
+        b.putString("category", category);
         intent.putExtras(b);
         startActivity(intent);
     }
