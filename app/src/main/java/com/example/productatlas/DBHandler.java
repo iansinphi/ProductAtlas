@@ -147,57 +147,6 @@ public class DBHandler extends SQLiteOpenHelper {
         return queryResult;
     }
 
-    //Return all information for one item.
-    public String[] getItemInformation() {
-        int i = 0;
-        String[] queryItem = new String[6];
-        List<Store> itemList = new ArrayList<Store>();
-        // Select All Query
-        String selectQuery = "SELECT * FROM "+TABLE_ITEM;
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery(selectQuery, null);
-        // looping through all rows and adding to list
-        if (cursor.moveToFirst()) {
-            do {
-                Store item = new Store();
-                item.setId(Integer.parseInt(cursor.getString(0)));
-                item.setName(cursor.getString(1));
-                item.setShelf(Integer.parseInt(cursor.getString(2)));
-                item.setStoreDesc(cursor.getString(3));
-                item.setPrice(Double.parseDouble(cursor.getString(4)));
-                item.setQuantity(Integer.parseInt(cursor.getString(5)));
-                item.setClassification(cursor.getString(6));
-                // Adding contact to list
-                itemList.add(item);
-                queryItem[i] = item.getName() + " " + item.getStoreDesc() + " " + item.getQuantity() + " " + item.getShelf() + " " + item.getClassification();
-                i++;
-            } while (cursor.moveToNext());
-        }
-        return queryItem;
-    }
-
-
-
-//RYAN - EVERYTHING BELOW HERE IS NOT USED WITH PRODUCT ATLAS****************
-//I'M LEAVING THE CODE HERE UNTIL WE KNOW WE WON'T NEED IT*******************
-    //Adding a new Item
-    public void addStore(Store store) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-
-        //Accessing getters for item information
-        values.put(KEY_NAME, store.getName());
-        values.put(KEY_SHELF, store.getShelf());
-        values.put(KEY_ITEM_DESC, store.getStoreDesc());
-        values.put(KEY_PRICE, store.getPrice());
-        values.put(KEY_QUANTITY, store.getQuantity());
-        values.put(KEY_CLASS, store.getClassification());
-        //Inserting a new row.
-        db.insert(TABLE_ITEM, null, values);
-        db.close(); // Closing database connection
-    }
-    //END ADD
-    //
     //This will get the information from one item using the id
     public Store findProduct(String name) {
         String query = "Select * FROM " + TABLE_ITEM + " WHERE " + KEY_NAME + " =  \"" + name + "\"";
@@ -225,59 +174,4 @@ public class DBHandler extends SQLiteOpenHelper {
         return item;
     }
     //END FINDING AN ITEM
-
-    //Returning all items from Database
-    //Was List<Store>
-    public String[] getAllShops() {
-        int i = 0;
-        String[] queryItem = new String[6];
-        List<Store> itemList = new ArrayList<Store>();
-        // Select All Query
-        String selectQuery = "SELECT * FROM "+TABLE_ITEM;
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery(selectQuery, null);
-        // looping through all rows and adding to list
-        if (cursor.moveToFirst()) {
-            do {
-                Store item = new Store();
-                item.setId(Integer.parseInt(cursor.getString(0)));
-                item.setName(cursor.getString(1));
-                item.setShelf(Integer.parseInt(cursor.getString(2)));
-                item.setStoreDesc(cursor.getString(3));
-                item.setPrice(Double.parseDouble(cursor.getString(4)));
-                item.setQuantity(Integer.parseInt(cursor.getString(5)));
-                item.setClassification(cursor.getString(6));
-                // Adding contact to list
-                itemList.add(item);
-                queryItem[i] = item.getName() + " " + item.getStoreDesc() + " " + item.getQuantity() + " " + item.getShelf() + " " + item.getClassification();
-                i++;
-            } while (cursor.moveToNext());
-        }
-        return queryItem;
-    }
-    //END FINDING ALL DATABASE ITEMS
-
-    //Search for the item by it's name and then delete it if it's found.
-    public boolean deleteProduct(String productName) {
-        boolean result = false;
-        String query = "Select * FROM " + TABLE_ITEM + " WHERE " + KEY_NAME + " =  \"" + productName + "\"";
-
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery(query, null);
-
-        Store product = new Store();
-
-        //If found, delete it and save change result to true.
-        if (cursor.moveToFirst()) {
-            product.setId(Integer.parseInt(cursor.getString(0)));
-            db.delete(TABLE_ITEM, KEY_ID + " = ?",
-                    new String[] { String.valueOf(product.getId()) });
-            cursor.close();
-            result = true;
-        }
-        db.close();
-        return result;
-    }
-    //END DELETION OF ITEM
-
 }

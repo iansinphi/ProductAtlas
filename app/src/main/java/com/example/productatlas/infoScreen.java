@@ -18,38 +18,33 @@ public class infoScreen extends AppCompatActivity {
         String quantity;
         String type;
 
-        //Ryan - Start of DB operations.
-        DBHandler dbHandler = new DBHandler(this);
-
         Bundle extras = getIntent().getExtras();
 
-        String[] itemInfo = extras.getStringArray("itemInfo");
-
-        for(String item:itemInfo){
-            Log.i("infoScreen", String.valueOf(item));
-
-            if (itemInfo[0] == item){
-                itemName = item;
-                TextView firstNameView = (TextView) findViewById(R.id.nameView);
-                firstNameView.setText("Name of Item: " + itemName);
-            }
-            else if (itemInfo[1] == item){
-                price = item;
-                TextView lastNameView = (TextView) findViewById(R.id.priceView);
-                lastNameView.setText("Price: " + price);
-            }
-            else if (itemInfo[2] == item){
-                quantity = item;
-                TextView lastNameView = (TextView) findViewById(R.id.quantityView);
-                lastNameView.setText("Quantity: " + quantity);
-            }
-            else if (itemInfo[3] == item){
-                type = item;
-
-            }
-        }
-
-
+//        String[] itemInfo = extras.getStringArray("itemInfo");
+//
+//        for(String item:itemInfo){
+//            Log.i("infoScreen", String.valueOf(item));
+//
+//            if (itemInfo[0] == item){
+//                itemName = item;
+//                TextView firstNameView = (TextView) findViewById(R.id.nameView);
+//                firstNameView.setText("Name of Item: " + itemName);
+//            }
+//            else if (itemInfo[1] == item){
+//                price = item;
+//                TextView lastNameView = (TextView) findViewById(R.id.priceView);
+//                lastNameView.setText("Price: " + price);
+//            }
+//            else if (itemInfo[2] == item){
+//                quantity = item;
+//                TextView lastNameView = (TextView) findViewById(R.id.quantityView);
+//                lastNameView.setText("Quantity: " + quantity);
+//            }
+//            else if (itemInfo[3] == item){
+//                type = item;
+//
+//            }
+//        }
     }
 }
 

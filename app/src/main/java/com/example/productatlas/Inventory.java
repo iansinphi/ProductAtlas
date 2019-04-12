@@ -106,8 +106,8 @@ public class Inventory extends AppCompatActivity {
         item = dbHandler.findProduct(itemClicked);
 
         Bundle b = new Bundle();
-        b.putInt("id", item.getId());
         b.putString("name", item.getName());
+        b.putInt("shelf", item.getShelf());
         b.putString("description", item.getStoreDesc());
         b.putDouble("price", item.getPrice());
         b.putInt("quantity", item.getQuantity());
