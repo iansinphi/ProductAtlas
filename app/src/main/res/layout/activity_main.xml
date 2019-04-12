@@ -12,7 +12,8 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
         <!--This layout allows elements to show on top of other elements and holds the map and its pins-->
-        <!--adjustViewBounds ensures proportion is consistent on different sized screens -->
+        <!--adjustViewBounds is supposed to make the proportion consistent on different sized screens,-->
+        <!--but it's still being stretched for some reason.-->
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="3dp"
@@ -26,7 +27,11 @@
             app:layout_constraintTop_toTopOf="parent"
             android:background="@drawable/produce">
 
-
+<!--<android.support.v7.widget.AppCompatImageView-->
+    <!--android:adjustViewBounds="true"-->
+    <!--android:src="@drawable/produce"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="match_parent"/>-->
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/mapContentsContraintLayout"
                 android:layout_width="match_parent"

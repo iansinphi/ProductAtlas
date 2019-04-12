@@ -17,6 +17,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+//import com.google.gson.Gson;
 
 public class MainActivity extends AppCompatActivity {
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
@@ -35,98 +36,58 @@ public class MainActivity extends AppCompatActivity {
 
         Bundle b = getIntent().getExtras();
 
+
+        //Jordan D. -- get pins by id so we can conditionally set their visibilities
+        ImageView PinA1 = (ImageView) findViewById(R.id.pinA1);
+        ImageView PinA2 = (ImageView) findViewById(R.id.pinA2);
+        ImageView PinB1 = (ImageView) findViewById(R.id.pinB1);
+        ImageView PinB2 = (ImageView) findViewById(R.id.pinB2);
+        ImageView PinC = (ImageView) findViewById(R.id.pinC);
+        ImageView PinD = (ImageView) findViewById(R.id.pinD);
+
+
         //If something was past in from...
         if (b != null) {
+            int id = b.getInt("id");
             String name = b.getString("name");
-            int shelf = b.getInt("shelf");
             String description = b.getString("description");
             Double price = b.getDouble("price");
             int quantity = b.getInt("quantity");
             String category = b.getString("category");
-
-            ImageView pinC = (ImageView) findViewById(R.id.pinC);
-            ImageView pinB1 = (ImageView) findViewById(R.id.pinB1);
-            ImageView pinB2 = (ImageView) findViewById(R.id.pinB2);
-            ImageView pinA1 = (ImageView) findViewById(R.id.pinA1);
-            ImageView pinA2 = (ImageView) findViewById(R.id.pinA2);
-            ImageView pinD = (ImageView) findViewById(R.id.pinD);
-
+ 
             //Activate the blip corresponding to this item's shelf number here and hide the rest.
-
-            switch(shelf){
-                case 1:
-                    pinC.setVisibility(View.VISIBLE);
-                    pinC.setClickable(true);
-
+            //Jordan D. -- so glad java 7 introduced strings in switches.
+            switch (category){
+                case "Vegetable":
+                    PinB2.setVisibility(PinB2.VISIBLE);
                     break;
-                case 2:
-                    pinB1.setVisibility(View.VISIBLE);
-                    pinB1.setClickable(true);
-
+                case "Fruit":
+                    PinB1.setVisibility(PinB1.VISIBLE);
                     break;
-                case 3:
-                    pinB2.setVisibility(View.VISIBLE);
-                    pinB2.setClickable(true);
 
-                    break;
-                case 4:
-                    pinA1.setVisibility(View.VISIBLE);
-                    pinA1.setClickable(true);
-
-                    break;
-                case 5:
-                    pinA2.setVisibility(View.VISIBLE);
-                    pinA2.setClickable(true);
-
-                    break;
-                case 6:
-                    pinD.setVisibility(View.VISIBLE);
-                    pinD.setClickable(true);
-
-                    break;
             }
+            //AlertDialog box to test that string is passed back to Main from Inventory.
+            new AlertDialog.Builder(this)
+                    .setTitle("Item Information to Be Viewed in Information Screen")
+                    .setMessage("ID: " + id + "\n"
+                            + "Name: " + name + "\n"
+                            + "Description: " + description + "\n"
+                            + "Price: " + price + "\n"
+                            + "Quantity: " + quantity + "\n"
+                            + "Category: " + category + "\n")
 
-            pinC.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v){
-                    launchInfoScreen("Test");
-                }
-            });
+                    //Specifying a listener allows you to take an action before dismissing the dialog.
+                    //The dialog is automatically dismissed when a dialog button is clicked.
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            //Continue
+                        }
+                    })
 
-            pinB1.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v){
-                    launchInfoScreen("Test");
-                }
-            });
-
-            pinB2.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v){
-                    launchInfoScreen("Test");
-                }
-            });
-
-            pinA1.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v){
-                    launchInfoScreen("Test");
-                }
-            });
-
-            pinA2.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v){
-                    launchInfoScreen("Test");
-                }
-            });
-
-            pinD.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v){
-                    launchInventory("app");
-                }
-            });
+                    //A null listener allows the button to dismiss the dialog and take no further action.
+                    .setNegativeButton(android.R.string.no, null)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
         } else {
             //Hide all blips.
         }
@@ -194,16 +155,6 @@ public class MainActivity extends AppCompatActivity {
         Bundle b = new Bundle();
         b.putString("queryType", "itemQuery");
         b.putString("itemQuery", itemQuery);
-        intent.putExtras(b);
-        startActivity(intent);
-    }
-
-    //
-    private void launchInfoScreen(String itemQuery) {
-        Intent intent = new Intent(this, infoScreen.class);
-        Bundle b = new Bundle();
-        b.putString("asdf", itemQuery);
-//        b.putString("itemQuery", itemQuery);
         intent.putExtras(b);
         startActivity(intent);
     }
