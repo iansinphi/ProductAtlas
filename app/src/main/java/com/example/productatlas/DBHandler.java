@@ -100,6 +100,7 @@ public class DBHandler extends SQLiteOpenHelper {
                 // Adding contact to list
                 itemList.add(item);
 
+
                 if (item.getName().toLowerCase().contains(itemQuery.toLowerCase())) {
                     queryResult.add(item.getName());
                 }
