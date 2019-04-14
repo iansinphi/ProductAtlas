@@ -6,9 +6,12 @@ import android.content.res.AssetManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,13 +31,16 @@ public class DBHandler extends SQLiteOpenHelper {
     private static final String KEY_QUANTITY = "quantity";
     private static final String KEY_CLASS = "class";
 
+    InputStream is;
+
     public DBHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         //IMPLEMENT CSV in ASSETS FOLDER---------------------------------------
         AssetManager assetManager = context.getAssets();
-        InputStream is;
+
         try {
-            is = assetManager.open("fileholder.csv");
+
+            is = assetManager.open("grocerydatabase.csv");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -45,19 +51,32 @@ public class DBHandler extends SQLiteOpenHelper {
     //it's designed to create the DB table if none exists
     @Override
     public void onCreate(SQLiteDatabase db) {
+        //Changed Price from Numeric to Integer
         String CREATE_CONTACTS_TABLE = "CREATE TABLE " + TABLE_ITEM + "("
         + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME + " TEXT,"
         + KEY_SHELF + " TEXT," + KEY_ITEM_DESC + " TEXT," + KEY_PRICE +
                 " NUMERIC," + KEY_QUANTITY + " INTEGER," + KEY_CLASS + " TEXT)";
         db.execSQL(CREATE_CONTACTS_TABLE);
-        //This area will eventually be used to pull a database from a client CSV file.. work in progress.
-        //Fine.. I'll freaking hardcode it for now..
-        db.execSQL("INSERT INTO item (name, shelf, item_desc, price, quantity, class) VALUES ('Avocado', '5', 'Awesome Avocados', '12', '8', 'Fruit');");
-        db.execSQL("INSERT INTO item (name, shelf, item_desc, price, quantity, class) VALUES ('Grapes', '5', 'Giant Grapes', '10', '11', 'Fruit');");
-        db.execSQL("INSERT INTO item (name, shelf, item_desc, price, quantity, class) VALUES ('Oranges', '5', 'Outrageous Oranges', '2', '8', 'Fruit');");
-        db.execSQL("INSERT INTO item (name, shelf, item_desc, price, quantity, class) VALUES ('Apples', '5', 'Amazing Apples', '5', '4', 'Fruit');");
-        db.execSQL("INSERT INTO item (name, shelf, item_desc, price, quantity, class) VALUES ('Lettuce', '6', 'Luxorious Lettuce', '1', '7', 'Vegetable');");
-        db.execSQL("INSERT INTO item (name, shelf, item_desc, price, quantity, class) VALUES ('Broccoli', '6', 'Beautiful Broccoli', '9', '4', 'Vegetable');");
+        //This area is used to pull a database from a client CSV file
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+            ContentValues contentValues = new ContentValues();
+            String line;
+
+            while ((line = reader.readLine()) != null) {
+                String[] x = line.split(",");
+                contentValues.put(KEY_NAME, x[0]);
+                contentValues.put(KEY_SHELF, x[1]);
+                contentValues.put(KEY_ITEM_DESC, x[2]);
+                contentValues.put(KEY_PRICE, x[3]);
+                contentValues.put(KEY_QUANTITY, x[4]);
+                contentValues.put(KEY_CLASS,x[5]);
+
+                db.insert(TABLE_ITEM, null, contentValues);
+            }
+        } catch (IOException e){
+            e.printStackTrace();
+        }
     }
     //This overrides the onUpgrade built in function
     //It's supposed to build a new database if one already exists
