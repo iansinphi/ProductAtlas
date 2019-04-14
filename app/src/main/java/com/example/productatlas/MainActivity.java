@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
@@ -43,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
         ImageView pinC = (ImageView) findViewById(R.id.pinC);
         ImageView pinD = (ImageView) findViewById(R.id.pinD);
 
+        //Jordan D. -- get search bar by id so we can show the latest item to be selected from the search.
+        TextInputEditText searchBar = (TextInputEditText) findViewById(R.id.textInputEditText);
+
         //If something was past in from...
         if (b != null) {
             final String name = b.getString("name");
@@ -53,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
             final String category = b.getString("category");
 
             //Activate the blip corresponding to this item's shelf number here and hide the rest.
+            //Jordan's switch that was modified to work based on a different attribute in the database.
             switch(shelf){
                 case 1:
                     pinC.setVisibility(View.VISIBLE);
@@ -85,6 +90,9 @@ public class MainActivity extends AppCompatActivity {
 
                     break;
             }
+
+            //Jordan D.  -- change text in the search bar to help people to remember that which they searched.
+            searchBar.setHint(name);
 
             pinC.setOnClickListener(new View.OnClickListener() {
                 @Override
