@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
             final String category = b.getString("category");
 
             //Activate the blip corresponding to this item's shelf number here and hide the rest.
+            //Jordan's switch that was modified to work based on a different attribute in the database.
             switch(shelf){
                 case 1:
                     pinC.setVisibility(View.VISIBLE);
