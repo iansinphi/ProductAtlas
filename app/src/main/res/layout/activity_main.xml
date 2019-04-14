@@ -25,7 +25,7 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:background="@drawable/produce">
+            android:background="@drawable/minimal_map">
 
 <!--<android.support.v7.widget.AppCompatImageView-->
     <!--android:adjustViewBounds="true"-->
@@ -221,7 +221,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="8"
-            android:background="@color/colorPrimary"
+            android:background="@color/Black"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
             app:layout_constraintBottom_toBottomOf="parent">

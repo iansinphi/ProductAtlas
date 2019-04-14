@@ -7,15 +7,17 @@
     tools:context=".infoScreen">
 
 
-
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="411dp"
-        android:layout_height="270dp"
+        android:layout_width="308dp"
+        android:layout_height="206dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
+        android:adjustViewBounds="false"
+        android:scaleType="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -74,8 +76,10 @@
         android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="Report Issue"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/reportissue"
+        android:scaleX="2"
+        android:scaleY="7"
         app:layout_constraintBottom_toTopOf="@+id/returnMap"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -89,10 +93,12 @@
         android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="4dp"
-        android:text="Return"
+        android:layout_marginBottom="28dp"
+        android:background="@drawable/returnbutton"
+        android:scaleX="1.5"
+        android:scaleY="7"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.384"
         app:layout_constraintStart_toStartOf="parent" />
-
 </android.support.constraint.ConstraintLayout>

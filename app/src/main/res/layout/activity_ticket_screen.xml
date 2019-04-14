@@ -97,7 +97,9 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-        android:text="Submit"
+        android:background="@drawable/submitbutton"
+        android:scaleY="7"
+        android:scaleX="3"
         app:layout_constraintBottom_toTopOf="@+id/returnInfo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -110,10 +112,13 @@
         android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="4dp"
-        android:text="Return"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/returnbutton"
+        android:scaleX="1.5"
+        android:scaleY="7"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.538"
         app:layout_constraintStart_toStartOf="parent" />
 
 
